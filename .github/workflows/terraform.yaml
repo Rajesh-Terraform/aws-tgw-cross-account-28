@@ -31,12 +31,12 @@ jobs:
         working-directory: terraform
         run: |
           terraform plan 
-            -var="hub_role=arn:aws:iam::434097521299:role/terraform-demo" 
-            -var="spoke_role=arn:aws:iam::434097521299:role/terraform-demo"
+            -var="hub_role="arn:aws:iam::434097521299:oidc-provider/token.actions.githubusercontent.com"
+            -var="spoke_role="arn:aws:iam::434097521299:oidc-provider/token.actions.githubusercontent.com"
 
       - name: Terraform Apply
         working-directory: terraform
         run: |
           terraform apply -auto-approve 
-            -var="hub_role=arn:aws:iam::434097521299:role/terraform-demo" 
-            -var="spoke_role=arn:aws:iam::434097521299:role/terraform-demo"
+            -var="hub_role="arn:aws:iam::434097521299:oidc-provider/token.actions.githubusercontent.com" 
+            -var="spoke_role="arn:aws:iam::434097521299:oidc-provider/token.actions.githubusercontent.com"
