@@ -29,14 +29,8 @@ jobs:
 
       - name: Terraform Plan
         working-directory: terraform
-        run: |
-          terraform plan 
-            -var="hub_role="arn:aws:iam::434097521299:oidc-provider/token.actions.githubusercontent.com"
-            -var="spoke_role="arn:aws:iam::434097521299:oidc-provider/token.actions.githubusercontent.com"
+        run: terraform plan
 
       - name: Terraform Apply
         working-directory: terraform
-        run: |
-          terraform apply -auto-approve 
-            -var="hub_role="arn:aws:iam::434097521299:oidc-provider/token.actions.githubusercontent.com" 
-            -var="spoke_role="arn:aws:iam::434097521299:oidc-provider/token.actions.githubusercontent.com"
+        run: terraform apply -auto-approve
