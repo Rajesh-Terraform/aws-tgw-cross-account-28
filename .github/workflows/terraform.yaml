@@ -5,7 +5,7 @@ on:
   push:
 
     branches:
-      - main
+      - master
 
 permissions:
 
@@ -27,7 +27,7 @@ jobs:
       - uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: ${{ secrets.HUB_ROLE }}
-          aws-region: us-east-1
+          aws-region: ap-south-1
 
       - name: Terraform Init
         working-directory: terraform
