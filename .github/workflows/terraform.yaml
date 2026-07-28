@@ -1,32 +1,26 @@
 name: TGW
 
 on:
-
   push:
-
     branches:
       - master
 
 permissions:
-
   id-token: write
   contents: read
 
 jobs:
-
   terraform:
-
     runs-on: ubuntu-latest
 
     steps:
-
       - uses: actions/checkout@v4
 
       - uses: hashicorp/setup-terraform@v3
 
       - uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: arn:aws:iam::434097521299:policy/terraform-demo
+          role-to-assume: arn:aws:iam::434097521299:role/terraform-demo
           aws-region: ap-south-1
 
       - name: Terraform Init
@@ -37,12 +31,12 @@ jobs:
         working-directory: terraform
         run: |
           terraform plan 
-          -var="hub_role= arn:aws:iam::434097521299:policy/terraform-demo
-          -var="spoke_role= arn:aws:iam::434097521299:policy/terraform-demo
+            -var="hub_role=arn:aws:iam::434097521299:role/terraform-demo" 
+            -var="spoke_role=arn:aws:iam::434097521299:role/terraform-demo"
 
       - name: Terraform Apply
         working-directory: terraform
         run: |
           terraform apply -auto-approve 
-          -var="hub_role= arn:aws:iam::434097521299:policy/terraform-demo
-          -var="spoke_role= arn:aws:iam::434097521299:policy/terraform-demo
+            -var="hub_role=arn:aws:iam::434097521299:role/terraform-demo" 
+            -var="spoke_role=arn:aws:iam::434097521299:role/terraform-demo"
